@@ -4,8 +4,10 @@ console.log('%c HI', 'color: firebrick')
 window.addEventListener('DOMContentLoaded', (e) => {
     getDogPics()
     getDogBreeds()
+    dropdownEventListener()
     // getDropdownBox()
 })
+
 
 //getting dogs
 
@@ -41,14 +43,28 @@ function addDogBreeds(breed) {
     li.addEventListener('click', (e) => li.style.color = "red")
     dogBreedList.appendChild(li)
     
-    //compare li's text to value of dropdown box. If same, append to dom
-    if (dropdownBox.value !== li.innerText.startsWith(dropdownBox.value)) {
-        li.remove
-    }
 
+    //compare li's text to value of dropdown box. If different, remove from dom
+    
+
+    // if (dropdownBox.value !== li.innerText.startsWith(dropdownBox.value)) {
+    //     li.remove
+    // }
 }
 
 
+function dropdownEventListener(){
+    const dropdownBox = document.getElementById("breed-dropdown")
+    const dogList = document.getElementById('dog-breeds').childNodes
+    dropdownBox.addEventListener("change", (e) =>{
+        if(dropdownBox.value === "a"){
+            dogList.filter(breed =>{
+                console.log(breed.startsWith("a"))
+                return breed.startsWith("a") 
+            })
+        }
+    })
+}
 
 
 
