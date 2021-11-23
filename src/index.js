@@ -8,6 +8,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
   // getDropdownBox()
 })
 
+//global variables
+let breeds = []
 
 //getting dogs
 
@@ -54,54 +56,30 @@ function dropdownEventListener() {
 
   //when the value in the dropdown box changes, iterate through the list of dog names on the DOM and compare that new value to the first letter of each dog breed name
   dropdownBox.addEventListener("change", (e) => {
-    if (dropdownBox.value === "a") {
-      dogList.filter(breed => {
-        console.log(breed.startsWith("a"))
-        return breed.startsWith("a")
-      })
-    } else if (dropdownBox.value === "b") {
-      dogList.filter(breed => {
-        return breed.startsWith("b")
-      })
+    if (e.target.value === "a") {
+      filterBreeds("a")
+    } else if (e.target.value === "b") {
+      filterBreeds("b")
+    } else if (e.target.value === "c") {
+      filterBreeds("c")
+    } else if (e.target.value === "d") {
+      filterBreeds("d")
     }
   })
 }
 
+  function filterBreeds(letter) {
+    updateBreedList(breeds.filter(breed => breed.startsWith(letter)))
+  }
 
+  function updateBreedList(breeds){
+    const dogList = document.getElementById('dog-breeds')
+    removeAllChildNodes(dogList)
+    breeds.forEach(breed => addDogBreeds(breed))
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getDropdownBox() {
-//     //get dropdown box
-//     const dropdownBox = document.getElementById("breed-dropdown")
-//     //get list of dog breeds from DOM
-//     const liList = Array.from(document.getElementById("dog-breeds").childNodes)
-//     liList.filter(checkFirstLetter)
-//     //go through list of breed names and compare the first letter of each one to the value of the dropdown box
-//     //if the first letter and the value are ===, do nothing
-//     //if the first letter and the value are !==, remove that breed name
-//     function checkFirstLetter(breedName){
-//         return breedName.startsWith(dropdownBox.value)
-//     }
-
-// }
-
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
