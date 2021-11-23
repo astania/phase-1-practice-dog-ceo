@@ -22,7 +22,10 @@ function getDogPics() {
 function getDogBreeds() {
   fetch('https://dog.ceo/api/breeds/list/all')
     .then(response => response.json())
-    .then(dogBreeds => Object.keys(dogBreeds.message).forEach(breed => addDogBreeds(breed)))
+    .then(dogBreeds =>{ 
+      breeds = Object.keys(dogBreeds.message) 
+      breeds.forEach(breed => addDogBreeds(breed))
+    })
 }
 
 //Renderers
